@@ -1,29 +1,124 @@
-body {
-  overflow: hidden;
-  height: 100vh;
-  touch-action: none;
-}
-.text {
-  font-size: 20px;
+.pointTavle {
+  height: 50px;
+  width: 550px;
+  margin: auto;
   font-family: verdana;
 }
-.dot {
-  position: absolute;
-  background-color: lightblue;
-  height: 0;
-  width: 0;
-  border-radius:50%;
-  left: 0;
-  top: 0;
-  visibility: hidden;
-  /*aspect-ratio: 3 / 1;*/
-  animation: color1 1s ease-in-out;
-  transition: 2s;
-/*origin position gør at cirklerne trækker til højre når de skåleres ned*/
-  transform-origin: 100% center;
+.pointScoring {
+  height: 50px;
+  width: 550px;
+  margin-left: 80px;
+  font-family: transparent;
 }
-@keyframes color1 {
-  0% {filter: hue-rotate(10deg); visibility: visible}
-  90% {filter: hue-rotate(270deg);}
-  100% {filter: hue-rotate(370deg); visibility: hidden; transform: scale(0)}
+.pointSpace {
+  height: 15px;
+  width: 140px;
+  margin-top: 15px;
+  float: left;
+  /*margin-left: 150px;*/
+}
+.visresultat {
+  position: absolute;
+  height: 15px;
+  width: 110px;
+  text-align: center;
+}
+
+
+.StenSaksPapir {
+  height: 540px;
+  width: 550px;
+  margin: auto;
+}
+
+.plade {
+  height: 200px;
+  width: 550px;
+  background-color: transparent;
+  margin-top: 40px;
+}
+
+.PCboks {
+  position: absolute;
+  height: 200px;
+  width: 550px;
+  background-color: white;
+  opacity: 0;
+}
+
+.textPlayers {
+  font-size: 30px;
+  font-weight: 900;
+  font-family: verdana;
+  text-align: center;
+}
+
+.pladser {
+  width: 150px;
+  height: 150px;
+  margin-left: 30px;
+  margin-top: 30px;
+  float: left;
+}
+
+.checkboxen {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  display: none;
+}
+
+.placeholder {
+  position: absolute;
+  content: '';
+  width: 150px;
+  height: 150px;
+  background-color: orange;
+  font-family: verdana;
+  font-size: 30px;
+  line-height: 150px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+
+.placeholder:hover {
+  border: 5px solid yellow;
+}
+
+#plads1:checked ~ #placeholder1 {
+  background-color: lightgreen;
+  border: 2px solid green;
+  opacity: 0.8;
+}
+
+#plads2:checked ~ #placeholder2 {
+  background-color: lightgreen;
+  border: 2px solid green;
+  opacity: 0.8;
+}
+
+#plads3:checked ~ #placeholder3 {
+  background-color: lightgreen;
+  border: 2px solid green;
+  opacity: 0.8;
+}
+
+#plads4:checked ~ #placeholder4 {
+  background-color: lightgreen;
+  border: 2px solid green;
+  opacity: 0.8;
+}
+
+#plads5:checked ~ #placeholder5 {
+  background-color: lightgreen;
+  border: 2px solid green;
+  opacity: 0.8;
+}
+
+#plads6:checked ~ #placeholder6 {
+  background-color: lightgreen;
+  border: 2px solid green;
+  opacity: 0.8;
 }

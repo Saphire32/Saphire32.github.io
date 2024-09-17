@@ -1,54 +1,29 @@
 body {
-  background-color: black;
-}
-.heading{
-  background-color: yellow;
-  color: red;
-  padding: 5px;
-}
-.button {
-  position:absolute;
-  margin-top:15%;
-  margin-left:10%;
-  padding: 15px 15px;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  color: orange;
-  background-color: yellow;
-  border: none;
-  border-radius: 50px;
-  box-shadow: 0 9px ;
-}
-.button:hover{
-  background-color: orange;
-}
-.list {
-color: red; 
-  background-color: yellow;
-  position: relative;
-  float: right;
-  padding: 5px;
-}
-.ul1 {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
-  background-color:yellow;
-  color: red;
+  height: 100vh;
+  touch-action: none;
 }
-.li1 {
-  float: left;
+.text {
+  font-size: 20px;
+  font-family: verdana;
 }
-.li1 a {
-  display: block;
-  color: red;
-  text-align: center;
-  padding: 16px;
-  text-decoration: none;
+.dot {
+  position: absolute;
+  background-color: lightblue;
+  height: 0;
+  width: 0;
+  border-radius:50%;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  /*aspect-ratio: 3 / 1;*/
+  animation: color1 1s ease-in-out;
+  transition: 2s;
+/*origin position gør at cirklerne trækker til højre når de skåleres ned*/
+  transform-origin: 100% center;
 }
-.li1 a:hover{
-  background-color: #00FCE1;
-  color: black;
+@keyframes color1 {
+  0% {filter: hue-rotate(10deg); visibility: visible}
+  90% {filter: hue-rotate(270deg);}
+  100% {filter: hue-rotate(370deg); visibility: hidden; transform: scale(0)}
 }

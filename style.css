@@ -1,0 +1,54 @@
+body {
+  background-color: black;
+}
+.heading{
+  background-color: yellow;
+  color: red;
+  padding: 5px;
+}
+.button {
+  position:absolute;
+  margin-top:15%;
+  margin-left:10%;
+  padding: 15px 15px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  color: orange;
+  background-color: yellow;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 9px ;
+}
+.button:hover{
+  background-color: orange;
+}
+.list {
+color: red; 
+  background-color: yellow;
+  position: relative;
+  float: right;
+  padding: 5px;
+}
+.ul1 {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:yellow;
+  color: red;
+}
+.li1 {
+  float: left;
+}
+.li1 a {
+  display: block;
+  color: red;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+.li1 a:hover{
+  background-color: #00FCE1;
+  color: black;
+}

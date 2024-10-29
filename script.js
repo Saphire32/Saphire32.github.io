@@ -1,132 +1,109 @@
-const checks = document.querySelectorAll(".checkboxen");
+let pixel = document.getElementById('pixelArt');
 
-function Turns() {
-  console.log("turns()")
+function displayFelter() {
+  //const pixel = Array();
+
+  for(let x = 0; x < 1; x++){
+    //var pixel = document.createElement('div');
+
+    //skaber 400 inputs+labels med id'er
+    for (var c = 0; c < 1200; c++) {
+      //c < 380 for fuld plade hvis der felterne har border på 1px
+      pixel.innerHTML += "<input type='checkbox' class='felter' id='felt" + c +"'/><label class='felt-front' id='front" + c +"' for='felt" + c +"'></label>";
+    } //document.getElementById('pixelArt').appendChild(pixel);
+  }
+}
+
+displayFelter();
+
+//getting all checkbox , iterating to add event listener
+document.querySelectorAll(".pixelArt").forEach((item) => {
+  //calling the function to pass the current element under ireration
+  AddBackGround(item);
+  //adding event listener to the checkbox so on change it will add/remove the background color
+  item.addEventListener('change', function(e){
+    // e is event object, e.target is the element on wich any event accured
+    AddBackGround(e.target)
+  })
+})
+
+function AddBackGround(item) {
+  let colorChoice = document.getElementById('color');
+
+
+  const elemId = item.getAttribute('id');
+
+  const labelElement = `label[for=${elemId}]`;
+
+  let shadowEffect = document.getElementById('shadowEffect');
+
+  let grid = document.getElementById('grid');
+
+  if (item.checked) {
+    document.querySelector(labelElement).style.backgroundColor = colorChoice.value;
+  }
+  else if (item.checked == false){
+    document.querySelector(labelElement).style.backgroundColor = "";
+  }
   
-  let PlayerChecks = document.querySelectorAll(".player");
-  let PCChecks = document.querySelectorAll(".pc");
-  let max = 1;
-  
-  for (const check of checks) {
-    check.onclick = selectiveCheck;
+
+  function Grid() {
+    grid.addEventListener('change', function(){
+      
+      if (grid.checked){     
+        document.querySelectorAll('label').forEach(function(ClearG1){
+          ClearG1.classList.add('grid');
+        });
+      pixel.style.height = "348px";
+      }
+      if (grid.checked == false) {
+        document.querySelectorAll('label').forEach(function(clearG2){
+          clearG2.classList.remove('grid');
+        });
+        pixel.style.height = "300px";
+      }
+    });
   }
-  
-  function selectiveCheck(event) {
-    let player = document.querySelectorAll(".player:checked")
-    let PC = document.querySelectorAll(".pc:checked")
-    
-    if (!event.target.checked) {
-      event.target.checked = true;
-      return false;
+  Grid();
+}
+
+function resetCanva() {
+  let felt = document.querySelectorAll('.felter');
+  let front = document.querySelectorAll('.felt-front');
+  let clear = document.getElementById('clear');
+  clear.addEventListener('clear', () => {
+    felt.checked = false;
+    //front.style.backgroundColor = "";
+    //front.classList.remove('effect')
+    document.querySelectorAll('input[type=checkbox]').forEach(el => el.checked = false);
+    document.querySelectorAll('label').forEach(function(clear){
+     clear.style.backgroundColor = "";
+     clear.style.backgroundImage = "";
+      //clear.classList.remove('effect');
+      //clear.classList.remove('border');
+    });
+    pixel.style.height = "300px";
+  });
+}
+resetCanva();
+
+let download = document.getElementById('download')
+
+var element = document.getElementById('pixelArt');
+var getCanvas;
+var newData;
+
+download.addEventListener('click', function() {
+  html2canvas(element, {
+    onrendered: function(canvas) {
+      getCanvas = canvas;
+      var imgageData = getCanvas.toDataURL("image/png");
+      var a = document.createElement("a");
+      
+      a.href = imgageData;
+      a.download = "PixelArt.png";
+      a.click();
+      //clearDynamicLink(a);
     }
-    if (player.length >= max + 1) {
-      return false;
-    }
-    if (PC.length >= max + 1) {
-      return false;
-    }
-    for (let b = 0; b < max; b++) {
-      setTimeout(() =>  {
-        let available = document.querySelectorAll(".pc:not(:checked)");
-        let randNum = Math.floor(Math.random() * PCChecks.length);
-        available[randNum].checked = true;
-        checkWinner();
-      }, 500);
-    }
-  }
-}
-
-function checkWinner() {
-  let plads1 = document.getElementById("plads1");
-  let plads2 = document.getElementById("plads2");
-  let plads3 = document.getElementById("plads3");
-  let plads4 = document.getElementById("plads4");
-  let plads5 = document.getElementById("plads5");
-  let plads6 = document.getElementById("plads6");
-  
-  if (plads1.checked == true && plads4.checked == true) {
-    WonDraw(++WinDraw);
-    setTimeout(() => {
-      plads1.checked = false;
-      plads4.checked = false;
-    }, 1000);
-  }
-  if (plads1.checked == true && plads5.checked == true) {
-    WonPlayer(++WinPlayer);
-    setTimeout(() => {
-      plads1.checked = false;
-      plads5.checked = false;
-    },1000);
-  }
-  if (plads1.checked == true && plads6.checked == true) {
-    WonPC(++WinPC);
-    setTimeout(() => {
-      plads1.checked = false;
-      plads6.checked = false;
-    },1000);
-  }
-  if (plads2.checked == true && plads4.checked == true) {
-    WonPC(++WinPC);
-    setTimeout(() => {
-      plads2.checked = false;
-      plads4.checked = false;
-    },1000);
-  }
-  if (plads2.checked == true && plads5.checked == true) {
-    WonDraw(++WinDraw);
-    setTimeout(() => {
-      plads2.checked = false;
-      plads5.checked = false;
-    },1000);
-  }
-  if (plads2.checked == true && plads6.checked == true) {
-    WonPlayer(++WinPlayer);
-    setTimeout(() => {
-      plads2.checked = false;
-      plads6.checked = false;
-    },1000);
-  }
-  if (plads3.checked == true && plads4.checked == true) {
-    WonPlayer(++WinPlayer);
-    setTimeout(() => {
-      plads3.checked = false;
-      plads4.checked = false;
-    },1000);
-  }
-  if (plads3.checked == true && plads5.checked == true) {
-    WonPC(++WinPC);
-    setTimeout(() => {
-      plads3.checked = false;
-      plads5.checked = false;
-    },1000);
-  }
-  if (plads3.checked == true && plads6.checked == true) {
-    WonDraw(++WinDraw);
-    setTimeout(() => {
-      plads3.checked = false;
-      plads6.checked = false;
-    },1000);
-  }
-}
-
-var WinPlayer = 0;
-
-function WonPlayer(winner) {
-  document.getElementById("visresultatWonPlayer").value = winner;
-}
-var WinPC = 0;
-
-function WonPC(winnerPC) {
-  document.getElementById("visresultatWonPC").value = winnerPC;
-}
-var WinDraw = 0;
-
-function WonDraw(winnerDraw) {
-  document.getElementById("visresultatWonDraw").value = winnerDraw;
-}
-
-var Rounds = 0;
-
-function Rounds(AllRounds) {
-  document.getElementById("Rounds").value = AllRounds;
-}
+  });
+});
